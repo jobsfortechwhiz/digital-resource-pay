@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>TechSpace Payment</title>
+
+  <link
+    rel="stylesheet"
+    href="pay.css"
+  >
+
+</head>
+
+<body>
+
+  <main class="payment-container">
+
+    <section class="payment-card">
+
+      <header class="payment-header">
+
+        <h1>TechSpace</h1>
+
+        <p>
+          Complete your payment to access digital resources.
+        </p>
+
+      </header>
+
+
+      <form id="paymentForm">
+
+        <!-- CUSTOMER DETAILS -->
+
+        <section class="section">
+
+          <h2>Customer details</h2>
+
+          <label for="name">
+            Full name
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            required
+          >
+
+
+          <label for="email">
+            Email address
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          >
+
+        </section>
+
+
+        <!-- PAYMENT AMOUNT -->
+
+        <section class="section amount-section">
+
+          <h2>Payment amount</h2>
+
+          <div class="amount">
+            ₹499
+          </div>
+
+          <p>
+            Replace this amount with the actual price
+            of your selected resource.
+          </p>
+
+        </section>
+
+
+        <!-- UPI -->
+
+        <section class="section">
+
+          <h2>1. Pay using UPI</h2>
+
+          <div class="upi-box">
+
+            <img
+              src="images/techspace-qr.png"
+              alt="TechSpace UPI payment QR code"
+              class="qr-image"
+            >
+
+            <p class="scan-text">
+              Scan the QR code using your UPI app.
+            </p>
+
+            <div class="copy-row">
+
+              <span class="masked-value">
+                ••••••••@upi
+              </span>
+
+              <button
+                type="button"
+                class="copy-btn"
+                data-copy="YOUR_FULL_UPI_ID"
+              >
+                Copy
+              </button>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- PAYPAL -->
+
+        <section class="section">
+
+          <h2>2. PayPal</h2>
+
+          <div class="copy-row">
+
+            <span class="payment-value">
+              your-paypal@email.com
+            </span>
+
+            <button
+              type="button"
+              class="copy-btn"
+              data-copy="your-paypal@email.com"
+            >
+              Copy
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- BANK TRANSFER -->
+
+        <section class="section">
+
+          <h2>3. Direct bank transfer</h2>
+
+          <div class="bank-row">
+
+            <div class="bank-details">
+
+              <label>
+                Account number
+              </label>
+
+              <span class="payment-value">
+                ********1234
+              </span>
+
+            </div>
+
+            <button
+              type="button"
+              class="copy-btn"
+              data-copy="YOUR_ACCOUNT_NUMBER"
+            >
+              Copy
+            </button>
+
+          </div>
+
+
+          <div class="bank-row">
+
+            <div class="bank-details">
+
+              <label>
+                IFSC code
+              </label>
+
+              <span class="payment-value">
+                ******XXX
+              </span>
+
+            </div>
+
+            <button
+              type="button"
+              class="copy-btn"
+              data-copy="YOUR_IFSC_CODE"
+            >
+              Copy
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- PAYMENT METHOD -->
+
+        <section class="section">
+
+          <h2>Payment method</h2>
+
+          <label for="method">
+            Select payment method
+          </label>
+
+          <select
+            id="method"
+            name="method"
+            required
+          >
+
+            <option value="">
+              Select method
+            </option>
+
+            <option value="UPI">
+              UPI
+            </option>
+
+            <option value="PAYPAL">
+              PayPal
+            </option>
+
+            <option value="BANK">
+              Bank transfer
+            </option>
+
+          </select>
+
+        </section>
+
+
+        <!-- SCREENSHOT -->
+
+        <section class="section">
+
+          <h2>Upload payment screenshot</h2>
+
+          <p class="help-text">
+
+            After completing your payment, upload
+            the payment screenshot below.
+
+          </p>
+
+          <label for="screenshot">
+            Payment screenshot
+          </label>
+
+          <input
+            type="file"
+            id="screenshot"
+            name="screenshot"
+            accept="image/*"
+            required
+          >
+
+          <p
+            id="fileInfo"
+            class="file-info"
+          ></p>
+
+        </section>
+
+
+        <!-- SUBMIT -->
+
+        <button
+          type="submit"
+          id="submitBtn"
+          class="submit-btn"
+        >
+          DONE — SUBMIT PAYMENT
+        </button>
+
+
+        <p
+          id="result"
+          class="result"
+          aria-live="polite"
+        ></p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+
+  <!-- HIDDEN FORM TARGET -->
+
+  <iframe
+    name="gasFrame"
+    id="gasFrame"
+    class="hidden-frame"
+  ></iframe>
+
+
+  <!-- CONFIRMATION DIALOG -->
+
+  <div
+    id="confirmationDialog"
+    class="dialog-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="dialogTitle"
+    hidden
+  >
+
+    <div class="dialog-box">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2 id="dialogTitle">
+        Payment screenshot submitted
+      </h2>
+
+      <p>
+        Your payment screenshot has been submitted
+        successfully.
+      </p>
+
+      <p>
+        Verification will be done within 24 hours.
+      </p>
+
+      <p>
+        You will receive an email after verification.
+      </p>
+
+      <button
+        type="button"
+        id="closeDialog"
+        class="submit-btn"
+      >
+        OK
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script src="pay.js"></script>
+
+</body>
+
+</html>
