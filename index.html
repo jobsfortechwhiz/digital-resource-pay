@@ -80,7 +80,7 @@
           <h2>Payment amount</h2>
 
           <div class="amount">
-            ₹499
+            ₹40
           </div>
 
           <p>
@@ -99,8 +99,8 @@
 
           <div class="upi-box">
 
-            <img
-              src="images/techspace-qr.png"
+            <img id="qrImage"
+              src="images/tech.PNG"
               alt="TechSpace UPI payment QR code"
               class="qr-image"
             >
@@ -111,14 +111,15 @@
 
             <div class="copy-row">
 
-              <span class="masked-value">
+              <span class="masked-value payment-row" id="upiId">
                 ••••••••@upi
               </span>
 
               <button
                 type="button"
                 class="copy-btn"
-                data-copy="YOUR_FULL_UPI_ID"
+                data-copy="upi"
+                data-copy-target="upiId"
               >
                 Copy
               </button>
@@ -132,36 +133,36 @@
 
         <!-- PAYPAL -->
 
-        <section class="section">
+        <section class="section payment-method">
 
           <h2>2. PayPal</h2>
+ <p class="paypal-description">
+        Pay securely using PayPal.
+    </p>
 
-          <div class="copy-row">
+    <a
+        id="paypalPaymentLink"
+        href="https://www.paypal.com/ncp/payment/CGQLYWWVBXK5L"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="paypal-pay-button">
 
-            <span class="payment-value">
-              your-paypal@email.com
-            </span>
+        <span class="paypal-p-symbol">P</span>
 
-            <button
-              type="button"
-              class="copy-btn"
-              data-copy="your-paypal@email.com"
-            >
-              Copy
-            </button>
+        <span>Pay with PayPal</span>
 
-          </div>
+    </a>
 
         </section>
 
 
         <!-- BANK TRANSFER -->
 
-        <section class="section">
+        <section class="section payment-method">
 
           <h2>3. Direct bank transfer</h2>
 
-          <div class="bank-row">
+          <div class="bank-row payment-row">
 
             <div class="bank-details">
 
@@ -169,7 +170,7 @@
                 Account number
               </label>
 
-              <span class="payment-value">
+              <span class="payment-value" id="bankAccount">
                 ********1234
               </span>
 
@@ -178,7 +179,8 @@
             <button
               type="button"
               class="copy-btn"
-              data-copy="YOUR_ACCOUNT_NUMBER"
+              data-copy="account"
+              data-copy-target="bankAccount"
             >
               Copy
             </button>
@@ -186,7 +188,7 @@
           </div>
 
 
-          <div class="bank-row">
+          <div class="bank-row payment-row">
 
             <div class="bank-details">
 
@@ -194,7 +196,7 @@
                 IFSC code
               </label>
 
-              <span class="payment-value">
+              <span class="payment-value" id="bankIfsc">
                 ******XXX
               </span>
 
@@ -203,7 +205,8 @@
             <button
               type="button"
               class="copy-btn"
-              data-copy="YOUR_IFSC_CODE"
+              data-copy="ifsc"
+              data-copy-target="bankIfsc"
             >
               Copy
             </button>
@@ -287,7 +290,7 @@
 
         <button
           type="submit"
-          id="submitBtn"
+         id="submitPayment"
           class="submit-btn"
         >
           DONE — SUBMIT PAYMENT
@@ -310,13 +313,14 @@
   <!-- HIDDEN FORM TARGET -->
 
   <iframe
-    name="gasFrame"
-    id="gasFrame"
+    name="paymentFrame"
+    id="paymentFrame"
     class="hidden-frame"
+    style="display:none;"
   ></iframe>
 
 
-  <!-- CONFIRMATION DIALOG -->
+  <!-- CONFIRMATION    -->
 
   <div
     id="confirmationDialog"
